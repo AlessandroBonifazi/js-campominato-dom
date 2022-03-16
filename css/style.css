@@ -8,7 +8,9 @@ body {
   font-family: sans-serif;
 }
 /* utilities */
-
+.no-click {
+  pointer-events: none;
+}
 /* content */
 #grid {
   width: 500px;
@@ -25,6 +27,9 @@ body {
 }
 .bg-blue {
   background-color: aqua;
+}
+.bg-red {
+  background-color: red;
 }
 .cell.hard {
   width: calc(100% / 7);

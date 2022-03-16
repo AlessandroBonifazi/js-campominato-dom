@@ -45,20 +45,67 @@ function createElementsInGrid(totalCells, levelClass) {
         cell.id = i + 1;
         // add cell to div  
         grid.appendChild(cell);
-        // add bg on click
-        cell.addEventListener('click', () => cell.classList.toggle('bg-blue'));
     }
 }
 
+function generateRandomNumber(min, max) {
+    const range = max - min + 1
+    const generatedNumber = Math.floor(Math.random() * range) + min;
+    return generatedNumber
+}
+
+function generateBombs(max) {
+    const bombPositions = [];
+    while (bombPositions.length < 16) {
+        const number = generateRandomNumber(1, max);
+        if (!bombPositions.includes(number)) {
+            bombPositions.push(number);
+        }
+    }
+    return bombPositions;
+}
+
+function startgame(totalCells) {
+    // call function
+    const bombPosition = generateBombs(totalCells);
+    // check for bombs
+    for (let i = 1; i <= totalCells; i++) {
+        const cell = document.getElementById(i);
+        cell.addEventListener('click', function () {
+            const isBomb = bombPosition.includes(i);
+            if (isBomb) {
+                cell.classList.add('bg-red');
+                result.innerText = "You Found a Bomb!";
+                grid.classList.add('no-click');
+                for (let i = 0; i < bombPosition.length; i++) {
+                    const allBombs = 'cell-' + bombPosition[i];
+                    console.log(allBombs);
+                }
+            } else {
+                cell.classList.add('bg-blue');
+            }
+        })
+    }
+}
 
 // Config
 const buttonEasy = document.getElementById('easy');
 const buttonMedium = document.getElementById('medium');
 const buttonHard = document.getElementById('hard');
+let result = document.getElementById('result');
 
-buttonEasy.addEventListener('click', () => createElementsInGrid(100, 'easy'));
-buttonMedium.addEventListener('click', () => createElementsInGrid(81, 'medium'));
-buttonHard.addEventListener('click', () => createElementsInGrid(49, 'hard'));
+buttonEasy.addEventListener('click', () => {
+    createElementsInGrid(100, 'easy');
+    startgame(100);
+});
+buttonMedium.addEventListener('click', () => {
+    createElementsInGrid(81, 'medium');
+    startgame(81);
+});
+buttonHard.addEventListener('click', () => {
+    createElementsInGrid(49, 'hard');
+    startgame(49);
+});
 
 
 
