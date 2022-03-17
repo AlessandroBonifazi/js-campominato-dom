@@ -6,12 +6,19 @@
 }
 body {
   font-family: sans-serif;
+  background-color: lightblue;
 }
 /* utilities */
 .no-click {
   pointer-events: none;
 }
 /* content */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 #grid {
   width: 500px;
   height: 500px;
@@ -20,10 +27,11 @@ body {
   flex-wrap: wrap;
 }
 .cell {
-  background-color: lightblue;
+  background-color: lightgreen;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 3px;
 }
 .bg-blue {
   background-color: aqua;
