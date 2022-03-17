@@ -29,6 +29,25 @@ BONUS:
    con difficoltà 3 => tra 1 e 49
 */
 
+// Config
+const buttonEasy = document.getElementById('easy');
+const buttonMedium = document.getElementById('medium');
+const buttonHard = document.getElementById('hard');
+let result = document.getElementById('result');
+
+buttonEasy.addEventListener('click', () => {
+    createElementsInGrid(100, 'easy');
+    startgame(100);
+});
+buttonMedium.addEventListener('click', () => {
+    createElementsInGrid(81, 'medium');
+    startgame(81);
+});
+buttonHard.addEventListener('click', () => {
+    createElementsInGrid(49, 'hard');
+    startgame(49);
+});
+
 // Functions
 function createElementsInGrid(totalCells, levelClass) {
     const grid = document.getElementById('grid');
@@ -66,9 +85,10 @@ function generateBombs(max) {
     return bombPositions;
 }
 
-function startgame(totalCells) {
+function startgame(totalCells, bombPositions) {
     // call function
     const bombPosition = generateBombs(totalCells);
+    const allCells = document.querySelectorAll('.cell');
     // check for bombs
     for (let i = 1; i <= totalCells; i++) {
         const cell = document.getElementById(i);
@@ -78,10 +98,8 @@ function startgame(totalCells) {
                 cell.classList.add('bg-red');
                 result.innerText = "You Found a Bomb!";
                 grid.classList.add('no-click');
-                for (let i = 0; i < bombPosition.length; i++) {
-                    const allBombs = bombPosition[i];
-                    console.log(allBombs);
-                }
+                // showBombs(bombPositions);
+
             } else {
                 cell.classList.add('bg-blue');
             }
@@ -89,24 +107,8 @@ function startgame(totalCells) {
     }
 }
 
-// Config
-const buttonEasy = document.getElementById('easy');
-const buttonMedium = document.getElementById('medium');
-const buttonHard = document.getElementById('hard');
-let result = document.getElementById('result');
 
-buttonEasy.addEventListener('click', () => {
-    createElementsInGrid(100, 'easy');
-    startgame(100);
-});
-buttonMedium.addEventListener('click', () => {
-    createElementsInGrid(81, 'medium');
-    startgame(81);
-});
-buttonHard.addEventListener('click', () => {
-    createElementsInGrid(49, 'hard');
-    startgame(49);
-});
+
 
 
 

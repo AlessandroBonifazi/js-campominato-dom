@@ -5,20 +5,14 @@
   padding: 0px;
 }
 body {
-  font-family: sans-serif;
-  background-color: lightblue;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #00203d;
 }
 /* utilities */
 .no-click {
   pointer-events: none;
 }
 /* content */
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 #grid {
   width: 500px;
   height: 500px;
@@ -27,11 +21,10 @@ body {
   flex-wrap: wrap;
 }
 .cell {
-  background-color: lightgreen;
+  background-color: rgb(111, 207, 111);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 3px;
 }
 .cell:hover {
   cursor: pointer;
