@@ -33,6 +33,10 @@ body {
   align-items: center;
   border-radius: 3px;
 }
+.cell:hover {
+  cursor: pointer;
+  border: 2px solid black;
+}
 .bg-blue {
   background-color: aqua;
 }
