@@ -34,15 +34,16 @@ function createElementsInGrid(totalCells, levelClass) {
     const grid = document.getElementById('grid');
     // reset
     grid.innerHTML = '';
+    grid.classList.remove('no-click');
     // 2. add totalCells div
     for (let i = 0; i < totalCells; i++) {
         const cell = document.createElement('div');
-        // add class
+        // add class and id
         cell.className = 'cell';
         cell.classList.add(levelClass);
+        cell.id = i + 1;
         // add inner text
         cell.innerText = (i + 1);
-        cell.id = i + 1;
         // add cell to div  
         grid.appendChild(cell);
     }
@@ -78,7 +79,7 @@ function startgame(totalCells) {
                 result.innerText = "You Found a Bomb!";
                 grid.classList.add('no-click');
                 for (let i = 0; i < bombPosition.length; i++) {
-                    const allBombs = 'cell-' + bombPosition[i];
+                    const allBombs = bombPosition[i];
                     console.log(allBombs);
                 }
             } else {
